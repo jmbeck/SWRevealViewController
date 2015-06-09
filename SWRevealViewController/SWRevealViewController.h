@@ -228,6 +228,8 @@ typedef NS_ENUM(NSInteger, SWRevealToggleAnimationType)
 // you still need to call this method, just don't add it to any of your views. The default setup allows you to dissable
 // user interactions on your controller views without affecting the recognizer.
 - (UIPanGestureRecognizer*)panGestureRecognizer;
+- (void)_handleRevealGesture:(UIPanGestureRecognizer *)recognizer;
+- (void)_handleTapGesture:(UITapGestureRecognizer *)recognizer;
 
 // The following method will provide a tapGestureRecognizer suitable to be added to any view on the frontController
 // for concealing the rear views. By default no tap recognizer is created or added to any view, however if you call this method after

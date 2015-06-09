@@ -1,3 +1,4 @@
+
 /*
 
  Copyright (c) 2013 Joan Lluch <joan.lluch@sweetwilliamsl.com>
@@ -906,27 +907,23 @@ const int FrontViewPositionNone = 0xff;
 
 - (UIPanGestureRecognizer*)panGestureRecognizer
 {
-    if ( _panGestureRecognizer == nil )
-    {
-        _panGestureRecognizer = [[SWRevealViewControllerPanGestureRecognizer alloc] initWithTarget:self action:@selector(_handleRevealGesture:)];
-        _panGestureRecognizer.delegate = self;
-        [_contentView.frontView addGestureRecognizer:_panGestureRecognizer];
-    }
+    _panGestureRecognizer = [[SWRevealViewControllerPanGestureRecognizer alloc] initWithTarget:self action:@selector(_handleRevealGesture:)];
+    _panGestureRecognizer.delegate = self;
+    [_contentView.frontView addGestureRecognizer:_panGestureRecognizer];
     return _panGestureRecognizer;
 }
 
 
 - (UITapGestureRecognizer*)tapGestureRecognizer
 {
-    if ( _tapGestureRecognizer == nil )
-    {
-        UITapGestureRecognizer *tapRecognizer =
-            [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleTapGesture:)];
-        
-        tapRecognizer.delegate = self;
-        [_contentView.frontView addGestureRecognizer:tapRecognizer];
-        _tapGestureRecognizer = tapRecognizer ;
-    }
+    UITapGestureRecognizer *tapRecognizer =
+    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleTapGesture:)];
+    
+    tapRecognizer.cancelsTouchesInView = YES;
+    
+    tapRecognizer.delegate = self;
+    [_contentView.frontView addGestureRecognizer:tapRecognizer];
+    _tapGestureRecognizer = tapRecognizer ;
     return _tapGestureRecognizer;
 }
 
